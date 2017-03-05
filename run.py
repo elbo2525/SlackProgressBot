@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import configparser
-
 from slackbot.bot import Bot
 
 def main():

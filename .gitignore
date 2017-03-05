@@ -1,2 +1,4 @@
-*/__pycache__/
+__pycache__/
 slackbot_settings.py
+*/.DS_Store
+.python-version
