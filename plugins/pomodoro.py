@@ -26,13 +26,13 @@ class Pomodoro(threading.Thread):
     def pmsend(self, message):
         if not self.stop:
             self.message.send(message)
-            print("{} min has passed".format((i+1) * self.notify_freq))
+            print(message)
 
     def run(self):
         self.stop = False
         self.pmsend('Pomodoro start!')
         for i in range(self.worktime // self.notify_freq):
-            time.sleep(6 * self.notify_freq)
+            time.sleep(60 * self.notify_freq)
             self.pmsend('{} min'.format((i+1) * self.notify_freq))
         self.pmsend('Break start!')
         for i in range(self.breaktime // self.notify_freq):
