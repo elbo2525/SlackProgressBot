@@ -2,3 +2,4 @@ __pycache__/
 slackbot_settings.py
 */.DS_Store
 .python-version
+database/
