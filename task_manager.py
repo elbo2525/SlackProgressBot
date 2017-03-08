@@ -73,3 +73,20 @@ def show_work():
         on work.categoryid = category.categoryid
     """
     return database_show(query)
+
+def edit_work(starttime, argkey, argvalue):
+    if argkey == 'duration':
+        key = 'endtime'
+        value = int(starttime) + int(argvalue) * 60
+    else:
+        key = argkey
+        value = argvalue
+    query = "update work set {} = ? where starttime is ?".format(key)
+    work = (value, starttime)
+    database_add(query, work)
+
+def insert_work(basetime, difftime, endtime, workname, categoryid, worktype):
+    starttime = int(basetime) + int(difftime) * 60
+    query = "insert into work (workname, categoryid, worktype, starttime, endtime) values (?,?,?,?,?)"
+    work = (workname, categoryid, worktype, starttime, endtime)
+    database_add(query, work)

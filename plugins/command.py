@@ -35,6 +35,20 @@ def work(message, arg1=None):
                 message.send('current: {} {} {} {} {} {}min'.format(row[0], row[1], row[2], row[3], row[6], (int(time.time()) - row[4]) // 60))
     elif args[0] == 'end':
         pass
+    elif args[0] == 'edit':
+        if len(args) == 4 and args[2] in ['name', 'category', 'type', 'duration']:
+            tm.edit_work(args[1], args[2], args[3])
+            message.send('Edited work: {} to {}'.format(args[2], args[3]))
+        else:
+            message.send('usage: work edit [starttime] [(name|category|type|duration)] [value]')
+    elif args[0] == 'insert':
+        if len(args) == 7:
+            tm.insert_work(args[1], args[2], args[3], args[4], args[5], args[6])
+            message.send('Inserted work: {} {} {}'.format(args[4], args[5], args[6]))
+        else:
+            message.send('usage: work insert [basetime] [difftime] [endtime] [name] [categoryid] [(i|o|io|np)]')
+    else:
+        message.send('usage: work (add|show|end|edit|insert)')
 
 
 @respond_to('category (.*)', re.IGNORECASE)
